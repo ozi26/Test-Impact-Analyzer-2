@@ -1,0 +1,14 @@
+# Pricing Service Configuration
+# This file contains settings that control the behavior of the Pricing Service.
+
+# The pricing section contains all pricing-related settings
+pricing:
+  # Cache settings
+  cache:
+    # How often (in seconds) to refresh the price cache
+    refresh_interval: 30
+  
+  # Database settings
+  database:
+    # How long (in seconds) to wait for a database response
+    timeout: 2

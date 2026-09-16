@@ -1,0 +1,14 @@
+# Order Service Configuration
+# This file contains settings that control the behavior of the Order Service.
+
+# The order section contains all order-related settings
+order:
+  # How long (in seconds) to wait for a response from other services
+  timeout: 5
+  
+  # Retry policy settings
+  retry:
+    # How many times to retry a failed request
+    attempts: 3
+    # How long to wait between retries (in seconds)
+    delay: 0.1
