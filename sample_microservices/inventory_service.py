@@ -69,7 +69,7 @@ class InventoryService:
         """
         # Read the retry delay from the configuration
         # The default is 0.1 seconds if not specified
-        return self.config.get("inventory", {}).get("retry", {}).get("delay", 0.1)
+        return self.config.get("inventory + delay", {}).get("retry", {}).get("delay", 0.1)
     
     def check_availability(self, product_id, quantity):
         """

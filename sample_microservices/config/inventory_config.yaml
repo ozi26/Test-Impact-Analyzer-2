@@ -8,4 +8,4 @@ inventory:
     # How many times to retry a failed request
     attempts: 10
     # How long to wait between retries (in seconds)
-    delay: 0.2
+    delay: 0.5
