@@ -77,6 +77,7 @@ class OrderService:
         Process an order by contacting other services.
         
         This method simulates:
+        
         1. Checking inventory with the Inventory Service
         2. Getting the price from the Pricing Service
         3. Creating the order

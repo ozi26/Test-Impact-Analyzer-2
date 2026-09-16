@@ -58,7 +58,7 @@ class PricingService:
         """
         # Read the cache refresh interval from the configuration
         # The default is 60 seconds if not specified
-        return self.config.get("pricing", {}).get("cache", {}).get("refresh_interval", 60)
+        return self.config.get("pricing + refresh interval", {}).get("cache", {}).get("refresh_interval", 60)
     
     def get_db_timeout(self):
         """

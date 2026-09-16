@@ -11,4 +11,4 @@ pricing:
   # Database settings
   database:
     # How long (in seconds) to wait for a database response
-    timeout: 2
+    timeout: 5

@@ -11,4 +11,4 @@ order:
     # How many times to retry a failed request
     attempts: 3
     # How long to wait between retries (in seconds)
-    delay: 0.1
+    delay: 0.5
