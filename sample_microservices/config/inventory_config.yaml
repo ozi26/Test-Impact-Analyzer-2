@@ -6,6 +6,6 @@ inventory:
   # Retry policy settings
   retry:
     # How many times to retry a failed request
-    attempts: 5
+    attempts: 10
     # How long to wait between retries (in seconds)
     delay: 0.2
