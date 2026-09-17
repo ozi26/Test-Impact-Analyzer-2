@@ -196,6 +196,29 @@ def main():
         commit_range=args.range,
         test_dir=args.tests,
     )
+
+    # ===== JENKINS INTEGRATION: Write JSON output =====
+    import json
+    from pathlib import Path
+    
+    # Only write output if analysis succeeded (no errors)
+    if "error" not in results:
+        output_path = Path(args.repo) / "analyzer_result.json"
+        
+        # Build the data Jenkins needs
+        jenkins_output = {
+            "affected_tests": [test for test, score in results["ranked_tests"]],
+            "has_affected_tests": len(results["ranked_tests"]) > 0,
+            "test_count": len(results["ranked_tests"]),
+        }
+        
+        # Write to file
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(jenkins_output, f, indent=2)
+        
+        print(f"[Jenkins] Result written to: {output_path}")
+        print(f"[Jenkins] Affected tests: {jenkins_output['test_count']}")
+    # ===== END JENKINS INTEGRATION =====
     
     # Return a success or failure code
     if "error" in results:
