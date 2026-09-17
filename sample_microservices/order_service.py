@@ -81,6 +81,7 @@ class OrderService:
         1. Checking inventory with the Inventory Service
         2. Getting the price from the Pricing Service
         3. Creating the order
+        4. Returning the result
         
         Args:
             order_id: The unique identifier for the order

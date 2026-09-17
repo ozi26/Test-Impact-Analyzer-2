@@ -14,7 +14,8 @@ from pathlib import Path        # For working with file paths
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-# Import our analyzer modules
+# ============= Import our analyzer modules =====================
+
 from analyzer.git_changes import get_changed_files, categorize_changed_files
 from analyzer.code_parser import extract_code_terms
 from analyzer.config_parser import (
