@@ -1,24 +1,21 @@
 // =============================================================================
 // JENKINSFILE
-// Pipeline definition for Test Impact Analyzer.
-// Jenkins reads this file and executes each stage automatically.
+// Pipeline for Test Impact Analyzer.
+// Updated to use python3 and pip3 (required on Linux systems).
 // =============================================================================
 
 pipeline {
-    // Run on any available Jenkins agent
     agent any
     
-    // Environment variables
     environment {
-        PYTHONIOENCODING = 'UTF-8'  // Prevent encoding issues
+        PYTHONIOENCODING = 'UTF-8'
     }
     
     stages {
         
-        // Stage 1: Get the latest code
+        // Stage 1: Get the latest code from GitHub
         stage('Checkout') {
             steps {
-                // Pull the code from the Git repository configured in Jenkins
                 checkout scm
             }
         }
@@ -26,30 +23,29 @@ pipeline {
         // Stage 2: Install Python dependencies
         stage('Install Dependencies') {
             steps {
-                // Install packages from requirements.txt
-                sh 'pip install -r requirements.txt'
+                // Use pip3 (not pip) on Linux
+                sh 'pip3 install -r requirements.txt'
             }
         }
         
-        // Stage 3: Run the Test Impact Analyzer
+        // Stage 3: Run the analyzer to detect affected tests
         stage('Analyze Changes') {
             steps {
-                // Detect changes and identify affected tests
-                // This creates analyzer_result.json
-                sh 'python scripts/run_analyzer.py --range HEAD~1..HEAD'
+                // Use python3 (not python) on Linux
+                // For the first build, compare HEAD with the previous commit
+                // If there's no previous commit, this will show no changes
+                sh 'python3 scripts/run_analyzer.py --range HEAD~1..HEAD'
             }
         }
         
-        // Stage 4: Execute ONLY the selected tests
+        // Stage 4: Run only the affected tests
         stage('Run Affected Tests') {
             steps {
-                // Read analyzer_result.json and run affected tests
-                sh 'python run_selected_tests.py'
+                sh 'python3 run_selected_tests.py'
             }
         }
     }
     
-    // Actions after pipeline completes
     post {
         always {
             echo 'Pipeline execution finished'
