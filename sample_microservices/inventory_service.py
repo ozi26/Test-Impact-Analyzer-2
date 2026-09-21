@@ -43,10 +43,10 @@ class InventoryService:
         Returns:
             A dictionary with configuration settings.
         """
-        # Build the path to the config file
+        # Build the path to the config file ...
         config_path = self.config_dir / "inventory_config.yaml"
         
-        # Open and parse the YAML file
+        # Open and parse the YAML file ...
         with open(config_path, "r", encoding="utf-8") as f:
             return yaml.safe_load(f)
     
