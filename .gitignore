@@ -7,3 +7,7 @@ __pycache__/
 # Ignore generated analyzer reports.
 tia-report.json
 trace-map.json
+# Ignore Python bytecode files.
+*.pyc
+# Ignore analyzer result files.
+analyzer_result.json
