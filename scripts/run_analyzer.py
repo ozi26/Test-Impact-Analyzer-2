@@ -26,35 +26,6 @@ from analyzer.config_parser import (
 from analyzer.scoring import rank_tests
 from analyzer.file_utils import read_text_file
 
-
-def find_test_files(test_dir):
-    """
-    Find all test files in a directory.
-    
-    Args:
-        test_dir: The directory to search for test files
-    
-    Returns:
-        A list of paths to test files.
-    """
-    # Convert to Path object for easier manipulation
-    test_path = Path(test_dir)
-    
-    # If the directory doesn't exist, return an empty list
-    if not test_path.exists():
-        return []
-    
-    # Find all Python files that look like test files
-    test_files = []
-    for file_path in test_path.rglob("*.py"):
-        # Check if the filename suggests it's a test
-        filename = file_path.name
-        if filename.startswith("test_") or filename.endswith("_test.py"):
-            test_files.append(str(file_path))
-    
-    # Return the list of test files
-    return test_files
-
 def find_test_files(test_dir):
     """
     Find all test files in a directory, across any programming language.
