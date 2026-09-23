@@ -20,7 +20,7 @@ class InventoryService:
         service = InventoryService("sample_microservices/config")
         result = service.check_availability("PRODUCT-456", 2)
         # result contains availability information
-        
+        # this is just a random comment to test the git diff command
     """
     
     def __init__(self, config_dir="sample_microservices/config"):
