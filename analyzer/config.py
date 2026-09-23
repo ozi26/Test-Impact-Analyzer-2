@@ -26,16 +26,30 @@ CONFIG_EXTENSIONS = {
 # from it and compare with words in test files.
 # -----------------------------------------------------------------------------
 SOURCE_EXTENSIONS = {
-    "py",           # Python files
-    "java",         # Java files
-    "js",           # JavaScript files
-    "ts",           # TypeScript files
-    "cpp",          # C++ source files
-    "c",            # C source files
-    "cs",           # C# files
-    "go",           # Go files
-    "rb",           # Ruby files
-    "php",          # PHP files
+    # Python
+    "py",
+    # Java / JVM
+    "java", "kt", "scala", "groovy",
+    # JavaScript / TypeScript
+    "js", "jsx", "ts", "tsx", "mjs", "cjs",
+    # C family
+    "c", "cpp", "cc", "cxx", "h", "hpp", "cs",
+    # Go
+    "go",
+    # Ruby
+    "rb",
+    # PHP
+    "php",
+    # Rust
+    "rs",
+    # Swift / Objective-C
+    "swift", "m", "mm",
+    # Shell
+    "sh", "bash", "zsh",
+    # Kotlin / Dart / Elixir / Erlang
+    "dart", "ex", "exs", "erl", "hrl",
+    # Lua / Perl / R
+    "lua", "pl", "pm", "r",
 }
 
 # -----------------------------------------------------------------------------
@@ -44,8 +58,21 @@ SOURCE_EXTENSIONS = {
 # A file is considered a test file if its name contains any of these patterns.
 # -----------------------------------------------------------------------------
 TEST_FILE_PATTERNS = {
-    "test_",        # Example: test_order_service.py
-    "_test",        # Example: order_service_test.py
-    "Test",         # Example: OrderServiceTest.java
-    "spec",         # Example: order_service_spec.js
+    # Python: test_order.py, order_test.py
+    "test_", "_test",
+    
+    # Java / C# / Kotlin: OrderTest.java, OrderTests.kt
+    "Test", "Tests", "IT",  # IT = Integration Test
+    
+    # JavaScript / TypeScript: order.test.js, order.spec.ts
+    ".test.", ".spec.", "_spec.",
+    
+    # Ruby: order_spec.rb
+    "_spec",
+    
+    # Go: order_test.go
+    "_test",
+    
+    # Generic
+    "spec",
 }

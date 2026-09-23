@@ -11,3 +11,11 @@ trace-map.json
 *.pyc
 # Ignore analyzer result files.
 analyzer_result.json
+
+# JavaScript
+node_modules/
+coverage/
+*.log
+
+# Multi-language test outputs
+test_dependencies.json

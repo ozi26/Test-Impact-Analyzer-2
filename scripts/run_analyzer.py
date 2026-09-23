@@ -55,6 +55,47 @@ def find_test_files(test_dir):
     # Return the list of test files
     return test_files
 
+def find_test_files(test_dir):
+    """
+    Find all test files in a directory, across any programming language.
+    
+    Uses the TEST_FILE_PATTERNS from analyzer.config to detect tests
+    by filename convention, regardless of extension.
+    
+    Args:
+        test_dir: The directory to search for test files
+    
+    Returns:
+        A list of paths to test files.
+    """
+    from analyzer.config import SOURCE_EXTENSIONS, TEST_FILE_PATTERNS
+    from analyzer.file_utils import get_file_extension
+    
+    test_path = Path(test_dir)
+    
+    if not test_path.exists():
+        return []
+    
+    test_files = []
+    
+    # Walk through every file in the test directory
+    for file_path in test_path.rglob("*"):
+        # Skip directories
+        if not file_path.is_file():
+            continue
+        
+        # Skip files with extensions that aren't source-code-like
+        extension = get_file_extension(file_path)
+        if extension not in SOURCE_EXTENSIONS:
+            continue
+        
+        # Check if the filename matches any test pattern
+        filename = file_path.name
+        if any(pattern in filename for pattern in TEST_FILE_PATTERNS):
+            test_files.append(str(file_path))
+    
+    return test_files
+
 
 def analyze_changes(repo_path=".", commit_range="HEAD~1..HEAD", test_dir="tests"):
     """
